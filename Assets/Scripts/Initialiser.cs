@@ -1,3 +1,4 @@
+using Assets.Scripts.Grid;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -11,10 +12,9 @@ public class Initialiser : MonoBehaviour {
     public CustomGrid Grid { get; private set; }
     void Start() {
         Grid = new CustomGrid(GridWidth,GridHeight);
-        for(int i = 0; i < GridWidth; i++) {
-            for(int j = 0; j < GridHeight; j++) {
-                Instantiate(CustomNodePrefab,Grid.Grid[i,j].NodeToWorldPositionV3(),quaternion.identity);
-            }
+
+        foreach(CustomNode node in Grid.Grid) {
+            Instantiate(CustomNodePrefab,node.NodeToWorldPositionV3(),Quaternion.identity);
         }
     }
 
